@@ -29,3 +29,7 @@ In case of remote Redux, it is possible to run it with SSH port forwarding:
 - [x] HowLongToBeat;
 - [ ] TypeScript;
 - [ ] Cleanup;
+
+## Docker
+
+`docker build . -t kalex375/igdb-api`
