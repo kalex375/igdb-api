@@ -37,7 +37,7 @@ app.get('/', ({res}) => {
 })
 
 // Deprecated - Kept for now to prevent breaking previous versions. Use GET instead.
-app.get('/igdb', check_token, async (req, res) => {
+app.get('/igdb/search', check_token, async (req, res) => {
     try {
         let query = `fields name, first_release_date, platforms.platform_logo.url, cover.url, total_rating, game_modes.name, summary, 
     genres.name, involved_companies.company.name, platforms.name, screenshots.url, similar_games.name, 
@@ -46,7 +46,7 @@ app.get('/igdb', check_token, async (req, res) => {
     where rating >= 80;
     where total_rating_count > 10;`
 
-        const search = req.query?.search?.trim().replace(/\W/gim, ' ')
+        const search = req.query?.q?.trim().replace(/\W/gim, ' ')
         if (search) {
             query = `fields name, first_release_date, platforms.platform_logo.url, cover.url, total_rating, game_modes.name, summary, 
       genres.name, involved_companies.company.name, platforms.name, screenshots.url, similar_games.name, 
@@ -84,7 +84,7 @@ app.get('/igdb', check_token, async (req, res) => {
     }
 })
 
-app.get('/games', check_token, async (req, res) => {
+app.get('/igdb/games', check_token, async (req, res) => {
     try {
 
         let query = `fields name, first_release_date, platforms.abbreviation, cover.url, total_rating;
